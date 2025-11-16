@@ -1,0 +1,12 @@
+name: Hello World
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  welcome:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Greeting
+        run: echo "🎉 Hello, GitHub Actions is working!"
