@@ -9,4 +9,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Greeting
-        run: echo "🎉 Hello, GitHub Actions is working!"
+        run: echo "Secret = ${{ secrets.MY_SECRET }}"
