@@ -1,0 +1,30 @@
+name: Artifact Demo
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-file:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create a file
+        run: echo "This is my artifact" > message.txt
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: my-message
+          path: message.txt
+
+  use-file:
+    runs-on: ubuntu-latest
+    needs: build-file
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: my-message
+
+      - name: Print file content
+        run: cat message.txt
