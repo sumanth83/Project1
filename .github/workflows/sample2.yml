@@ -1,0 +1,31 @@
+name: Artifact Task
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+
+  create-file:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create txt file
+        run: echo "Hello DevOps Engineer" > devops.txt
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: devops-file
+          path: devops.txt
+
+  use-file:
+    runs-on: ubuntu-latest
+    needs: create-file
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: devops-file
+
+      - name: Print file
+        run: cat devops.txt
